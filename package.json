@@ -1,6 +1,6 @@
 {
   "name": "justo-plugin-fs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple tasks to run file system commands.",
   "homepage": "http://www.justojs.org",
   "author": {

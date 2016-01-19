@@ -5,7 +5,6 @@ const test = justo.test;
 
 //suite
 suite("#fs", function() {
-
   test("fs.clean", function() {
     const clean = require("../../../dist/es5/nodejs/justo-plugin-fs").clean;
 
@@ -18,5 +17,12 @@ suite("#fs", function() {
 
     copy.must.be.instanceOf(Function);
     copy.toString().must.contain("runSimpleTask");
+  });
+
+  test("fs.create", function() {
+    const create = require("../../../dist/es5/nodejs/justo-plugin-fs").create;
+
+    create.must.be.instanceOf(Function);
+    create.toString().must.contain("runSimpleTask");
   });
 })();

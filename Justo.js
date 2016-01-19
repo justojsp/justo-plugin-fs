@@ -18,11 +18,7 @@ register({name: "build", desc: "Build the package."}, function() {
 
   jshint("Best practices", {
     output: true,
-    files: [
-      "lib/index.js",
-      "lib/clean.js",
-      "lib/copy.js"
-    ]
+    src: "lib/"
   });
 
   babel("Transpile", {
@@ -31,9 +27,19 @@ register({name: "build", desc: "Build the package."}, function() {
     files: {
       "build/es5/lib/index.js": "lib/index.js",
       "build/es5/lib/clean.js": "lib/clean.js",
-      "build/es5/lib/copy.js": "lib/copy.js"
+      "build/es5/lib/copy.js": "lib/copy.js",
+      "build/es5/lib/create.js": "lib/create.js"
     }
   });
+
+  simple("Clean dist directory", function() {
+    var clean;
+
+    if (fs.exists("./dist/es5/nodejs/justo-plugin-fs")) clean = require("./dist/es5/nodejs/justo-plugin-fs/lib/clean");
+    else clean = require("./build/es5/lib/clean");
+
+    clean({dirs: ["dist/es5"]});
+  })();
 
   simple("Create package", function() {
     var copy;
@@ -56,11 +62,7 @@ register({name: "build", desc: "Build the package."}, function() {
 
 register({name: "test", desc: "Unit test."}, {
   require: "justo-assert",
-  src: [
-    "test/unit/lib/clean.js",
-    "test/unit/lib/copy.js",
-    "test/unit/lib/index.js"
-  ]
+  src: "test/unit/lib/"
 });
 
 register("default", ["build", "test"]);
