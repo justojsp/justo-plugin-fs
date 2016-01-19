@@ -42,7 +42,8 @@
     "justo-assert-fs": "*",
     "justo-dummy": "*",
     "justo-plugin-babel": "*",
-    "justo-plugin-jshint": "*"
+    "justo-plugin-jshint": "*",
+    "justo-plugin-npm": "*"
   },
   "preferGlobal": false,
   "main": "lib/index.js",
