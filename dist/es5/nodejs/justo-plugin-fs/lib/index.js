@@ -11,6 +11,10 @@ var clean, copy, create;exports["default"] = Object.defineProperties(
       return clean;}, configurable: true, enumerable: true }, 
 
 
+  remove: { get: function get() {
+      return this.clean;}, configurable: true, enumerable: true }, 
+
+
   copy: { get: function get() {
       if (!copy) copy = (0, _justo.simple)({ ns: NS, name: "copy" }, require("./copy"));
       return copy;}, configurable: true, enumerable: true }, 

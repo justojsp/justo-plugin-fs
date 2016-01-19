@@ -12,6 +12,13 @@ suite("#fs", function() {
     clean.toString().must.contain("runSimpleTask");
   });
 
+  test("fs.remove", function() {
+    const remove = require("../../../dist/es5/nodejs/justo-plugin-fs").remove;
+
+    remove.must.be.instanceOf(Function);
+    remove.toString().must.contain("runSimpleTask");
+  });
+
   test("fs.copy", function() {
     const copy = require("../../../dist/es5/nodejs/justo-plugin-fs").copy;
 

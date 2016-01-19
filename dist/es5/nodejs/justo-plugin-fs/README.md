@@ -136,6 +136,10 @@ clean("Example", [
 ])
 ```
 
+## remove task
+
+The `remove` task is an alias of `clean`.
+
 ## copy task
 
 The `copy` task must be called as follows:
