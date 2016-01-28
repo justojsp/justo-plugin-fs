@@ -1,17 +1,17 @@
 {
   "name": "justo-plugin-fs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Simple tasks to run file system commands.",
   "homepage": "http://www.justojs.org",
   "author": {
-    "name": "The Justo.js Development Group",
-    "email": "justojs.org@outlook.com",
+    "name": "JustoLabs",
+    "email": "justojs@justolabs.com",
     "url": "http://www.justojs.org"
   },
   "contributors": [
     {
       "name": "Raúl G. González",
-      "email": "raulggonzalezsw@outlook.com",
+      "email": "raulggonzalez@justojs.org",
       "url": ""
     }
   ],
@@ -22,7 +22,7 @@
   ],
   "bugs": {
     "url": "https://github.com/justojsp/justo-plugin-fs/issues",
-    "email": "justojs.org@outlook.com"
+    "email": "issues@justojs.org"
   },
   "repository": {
     "type": "git",
@@ -46,10 +46,9 @@
     "justo-plugin-npm": "*"
   },
   "preferGlobal": false,
-  "main": "lib/index.js",
+  "main": "index.js",
   "files": [
-    "lib",
-    "test"
+    "lib"
   ],
   "scripts": {
     "test": "justo test"

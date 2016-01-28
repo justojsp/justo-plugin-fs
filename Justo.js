@@ -1,5 +1,5 @@
 //imports
-const register = require("justo").register;
+const catalog = require("justo").catalog;
 const simple = require("justo").simple;
 const fs = require("justo-fs");
 const babel = require("justo-plugin-babel");
@@ -7,7 +7,7 @@ const jshint = require("justo-plugin-jshint");
 const publish = require("justo-plugin-npm").publish;
 
 //works
-register({name: "build", desc: "Build the package."}, function() {
+catalog.workflow({name: "build", desc: "Build the package."}, function() {
   simple("Clean build directory", function() {
     var clean;
 
@@ -26,7 +26,7 @@ register({name: "build", desc: "Build the package."}, function() {
     comments: false,
     retainLines: true,
     files: {
-      "build/es5/lib/index.js": "lib/index.js",
+      "build/es5/index.js": "index.js",
       "build/es5/lib/clean.js": "lib/clean.js",
       "build/es5/lib/copy.js": "lib/copy.js",
       "build/es5/lib/create.js": "lib/create.js"
@@ -50,6 +50,10 @@ register({name: "build", desc: "Build the package."}, function() {
 
     copy([
       {
+        src: "build/es5/index.js",
+        dst: "dist/es5/nodejs/justo-plugin-fs/"
+      },
+      {
         src: "build/es5/lib/",
         dst: "dist/es5/nodejs/justo-plugin-fs/lib"
       },
@@ -61,16 +65,16 @@ register({name: "build", desc: "Build the package."}, function() {
   })();
 });
 
-register({name: "test", desc: "Unit test."}, {
+catalog.macro({name: "test", desc: "Unit test."}, {
   require: "justo-assert",
-  src: "test/unit/lib/"
+  src: ["test/unit/index.js", "test/unit/lib/"]
 });
 
-register({name: "publish", desc: "NPM publish"}, function() {
+catalog.workflow({name: "publish", desc: "NPM publish"}, function() {
   publish("Publish in NPM", {
     who: "justojs",
     src: "dist/es5/nodejs/justo-plugin-fs"
   });
 });
 
-register("default", ["build", "test"]);
+catalog.macro("default", ["build", "test"]);

@@ -7,7 +7,7 @@ var clean, copy, create;exports["default"] = Object.defineProperties(
 
 {}, { 
   clean: { get: function get() {
-      if (!clean) clean = (0, _justo.simple)({ ns: NS, name: "clean" }, require("./clean"));
+      if (!clean) clean = (0, _justo.simple)({ ns: NS, name: "clean" }, require("./lib/clean"));
       return clean;}, configurable: true, enumerable: true }, 
 
 
@@ -16,10 +16,10 @@ var clean, copy, create;exports["default"] = Object.defineProperties(
 
 
   copy: { get: function get() {
-      if (!copy) copy = (0, _justo.simple)({ ns: NS, name: "copy" }, require("./copy"));
+      if (!copy) copy = (0, _justo.simple)({ ns: NS, name: "copy" }, require("./lib/copy"));
       return copy;}, configurable: true, enumerable: true }, 
 
 
   create: { get: function get() {
-      if (!create) create = (0, _justo.simple)({ ns: NS, name: "create" }, require("./create"));
+      if (!create) create = (0, _justo.simple)({ ns: NS, name: "create" }, require("./lib/create"));
       return create;}, configurable: true, enumerable: true } });module.exports = exports["default"];
