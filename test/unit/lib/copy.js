@@ -10,7 +10,7 @@ const file = require("justo-assert-fs").file;
 const dir = require("justo-assert-fs").dir;
 const File = require("justo-fs").File;
 const Dir = require("justo-fs").Dir;
-const copy = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/copy");
+const copy = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/copy").default;
 
 //suite
 suite("#copy()", function() {

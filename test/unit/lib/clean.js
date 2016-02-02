@@ -9,7 +9,7 @@ const init = justo.init;
 const fin = justo.fin;
 const file = require("justo-assert-fs").file;
 const dir = require("justo-assert-fs").dir;
-const clean = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/clean");
+const clean = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/clean").default;
 
 //suite
 suite("#clean()", function() {

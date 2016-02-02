@@ -5,9 +5,9 @@ import {simple} from "justo";
 const NS = "org.justo.plugin.fs";
 var clean, copy, create;
 
-export default {
+module.exports = {
   get clean() {
-    if (!clean) clean = simple({ns: NS, name: "clean"}, require("./lib/clean"));
+    if (!clean) clean = simple({ns: NS, name: "clean"}, require("./lib/clean").default);
     return clean;
   },
 
@@ -16,12 +16,12 @@ export default {
   },
 
   get copy() {
-    if (!copy) copy = simple({ns: NS, name: "copy"}, require("./lib/copy"));
+    if (!copy) copy = simple({ns: NS, name: "copy"}, require("./lib/copy").default);
     return copy;
   },
 
   get create() {
-    if (!create) create = simple({ns: NS, name: "create"}, require("./lib/create"));
+    if (!create) create = simple({ns: NS, name: "create"}, require("./lib/create").default);
     return create;
   }
 };

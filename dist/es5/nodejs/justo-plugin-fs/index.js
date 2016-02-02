@@ -1,25 +1,25 @@
-"use strict";Object.defineProperty(exports, "__esModule", { value: true });var _justo = require(
-"justo");
+"use strict";var _justo = require("justo");
+
 
 
 var NS = "org.justo.plugin.fs";
-var clean, copy, create;exports["default"] = Object.defineProperties(
+var clean, copy, create;
 
-{}, { 
-  clean: { get: function get() {
-      if (!clean) clean = (0, _justo.simple)({ ns: NS, name: "clean" }, require("./lib/clean"));
-      return clean;}, configurable: true, enumerable: true }, 
-
-
-  remove: { get: function get() {
-      return this.clean;}, configurable: true, enumerable: true }, 
+module.exports = { 
+  get clean() {
+    if (!clean) clean = (0, _justo.simple)({ ns: NS, name: "clean" }, require("./lib/clean").default);
+    return clean;}, 
 
 
-  copy: { get: function get() {
-      if (!copy) copy = (0, _justo.simple)({ ns: NS, name: "copy" }, require("./lib/copy"));
-      return copy;}, configurable: true, enumerable: true }, 
+  get remove() {
+    return this.clean;}, 
 
 
-  create: { get: function get() {
-      if (!create) create = (0, _justo.simple)({ ns: NS, name: "create" }, require("./lib/create"));
-      return create;}, configurable: true, enumerable: true } });module.exports = exports["default"];
+  get copy() {
+    if (!copy) copy = (0, _justo.simple)({ ns: NS, name: "copy" }, require("./lib/copy").default);
+    return copy;}, 
+
+
+  get create() {
+    if (!create) create = (0, _justo.simple)({ ns: NS, name: "create" }, require("./lib/create").default);
+    return create;} };

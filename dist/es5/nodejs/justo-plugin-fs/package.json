@@ -1,6 +1,6 @@
 {
   "name": "justo-plugin-fs",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "description": "Simple tasks to run file system commands.",
   "homepage": "http://www.justojs.org",
   "author": {
@@ -29,7 +29,7 @@
     "url": "https://github.com/justojsp/justo-plugin-fs.git"
   },
   "engines": {
-    "node": ">=4.1.0",
+    "node": ">=4.0.0",
     "npm": ">=3.0.0"
   },
   "dependencies": {
@@ -42,6 +42,7 @@
     "justo-assert-fs": "*",
     "justo-dummy": "*",
     "justo-plugin-babel": "*",
+    "justo-plugin-cli": "*",
     "justo-plugin-jshint": "*",
     "justo-plugin-npm": "*"
   },
@@ -52,6 +53,5 @@
   ],
   "scripts": {
     "test": "justo test"
-  },
-  "license": "MIT"
+  }
 }

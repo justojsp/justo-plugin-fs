@@ -6,7 +6,7 @@ const init = justo.init;
 const fin = justo.fin;
 const File = require("justo-fs").File;
 const Dir = require("justo-fs").Dir;
-const create = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/create");
+const create = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/create").default;
 
 //suite
 suite("#create()", function() {
