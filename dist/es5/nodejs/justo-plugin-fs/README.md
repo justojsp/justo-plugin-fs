@@ -164,6 +164,7 @@ When we use an object, the properties can be:
 
 - `src` (String[]). The source entries to copy to destination.
 - `dst` (String) or `dest` (String). The destination.
+- `ignore` (string or string[]). To exclude entries.
 
 Example:
 

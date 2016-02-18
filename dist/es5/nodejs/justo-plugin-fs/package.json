@@ -1,6 +1,6 @@
 {
   "name": "justo-plugin-fs",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Simple tasks to run file system commands.",
   "homepage": "http://www.justojs.org",
   "author": {
@@ -29,7 +29,7 @@
     "url": "https://github.com/justojsp/justo-plugin-fs.git"
   },
   "engines": {
-    "node": ">=4.0.0",
+    "node": ">=5.0.0",
     "npm": ">=3.0.0"
   },
   "dependencies": {

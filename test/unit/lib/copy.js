@@ -14,12 +14,14 @@ const copy = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/copy").defaul
 
 //suite
 suite("#copy()", function() {
-  const SRC_DIR = new Dir("test/unit/data/copy");
-  var DST_DIR = new Dir(Dir.TMP_DIR, Date.now());
+  const SRC_DIR = new Dir("test/unit/data/copy"), SRC = SRC_DIR.path;
+  var DST_DIR, DST;
+
   const log = dummy({}, ["debug()", "info()", "warn()", "error()", "fatal()"]);
 
   init("*", function() {
-    DST_DIR.create();
+    DST_DIR = Dir.createTmpDir();
+    DST = DST_DIR.path;
   });
 
   fin("*", function() {
@@ -41,8 +43,10 @@ suite("#copy()", function() {
     var dst = DST_DIR;
     var srcFile1 = new File(SRC_DIR, "a.txt");
     var srcFile2 = new File(SRC_DIR, "b.txt");
+    var srcFile3 = new File(SRC_DIR, "ignore", "c.txt");
     var dstFile1 = new File(DST_DIR, "a.txt");
     var dstFile2 = new File(DST_DIR, "b.txt");
+    var dstFile3 = new File(DST_DIR, "ignore", "c.txt");
 
     copy([src.path, dst.path], log);
 
@@ -50,6 +54,25 @@ suite("#copy()", function() {
     file(dstFile1.path).text.must.be.eq(srcFile1.text);
     file(dstFile2.path).must.exist();
     file(dstFile2.path).text.must.be.eq(srcFile2.text);
+    file(dstFile3.path).must.exist();
+    file(dstFile3.path).text.must.be.eq(srcFile3.text);
+  });
+
+  test("Dir to dir with ignore", function() {
+    var src = SRC_DIR;
+    var dst = DST_DIR;
+    var srcFile1 = new File(SRC_DIR, "a.txt");
+    var srcFile2 = new File(SRC_DIR, "b.txt");
+    var dstFile1 = new File(DST_DIR, "a.txt");
+    var dstFile2 = new File(DST_DIR, "b.txt");
+
+    copy([{src: src.path, dst: dst.path, ignore: path.join(SRC, "ignore")}], log);
+
+    file(dstFile1.path).must.exist();
+    file(dstFile1.path).text.must.be.eq(srcFile1.text);
+    file(dstFile2.path).must.exist();
+    file(dstFile2.path).text.must.be.eq(srcFile2.text);
+    file(DST, "ignore", "c.txt").must.not.exist();
   });
 
   test("Entries to dir", function() {
