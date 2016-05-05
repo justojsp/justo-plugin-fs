@@ -1,11 +1,16 @@
-"use strict";var _justo = require("justo");
-
+"use strict";
+var _justo = require("justo");
 
 
 var NS = "org.justo.plugin.fs";
-var clean, copy, create;
+var chown, clean, copy, create;
 
 module.exports = { 
+  get chown() {
+    if (!chown) chown = (0, _justo.simple)({ ns: NS, name: "chown" }, require("./lib/chown").default);
+    return chown;}, 
+
+
   get clean() {
     if (!clean) clean = (0, _justo.simple)({ ns: NS, name: "clean" }, require("./lib/clean").default);
     return clean;}, 

@@ -1,10 +1,15 @@
+[![NPM version](http://img.shields.io/npm/v/justo-plugin-fs.svg)](https://www.npmjs.org/package/justo-plugin-fs)
 [![Build Status](https://travis-ci.org/justojsp/justo-plugin-fs.svg)](https://travis-ci.org/justojsp/justo-plugin-fs)
+[![Dependency Status](https://david-dm.org/justojsp/justo-plugin-fs.svg)](https://david-dm.org/justojsp/justo-plugin-fs)
+[![devDependency Status](https://david-dm.org/justojsp/justo-plugin-fs/dev-status.svg)](https://david-dm.org/justojsp/justo-plugin-fs#info=devDependencies)
 
 Simple tasks to run file system commands:
 
 - Copy files and directories.
 - Clean files and directories.
 - Create files and directories.
+- Change owner and group.
+- Change mode.
 
 *Proudly made with ♥ in Valencia, Spain, EU.*
 
@@ -25,14 +30,14 @@ const fs = require("justo-plugin-fs");
 The `create` task creates files and/or directories:
 
 ```
-create(opts, config : object) : number
-create(opts, src : string) : number
-create(opts, src : string[]) : number
+create(justoOpts, opts : object) : number
+create(justoOpts, src : string) : number
+create(justoOpts, src : string[]) : number
 ```
 
 Returns the number of entries created.
 
-The `config` parameter can have the following properties:
+The `opts` parameter can have the following properties:
 
 - `src` (string or string[]). The entries to create. The directories must end with a `/` character.
 - `file` (string or object) or `files` (string[] or object[]). The files to create.
@@ -89,8 +94,8 @@ it is not needed.
 The `clean` task removes files and directories. This must be called as follows:
 
 ```
-clean(opts, config : object)
-clean(opts, src : string[])
+clean(justoOpts, opts : object)
+clean(justoOpts, src : string[])
 ```
 
 To delete files, use the `files` property as `string[]`. If some file doesn't exist,
@@ -145,10 +150,10 @@ The `remove` task is an alias of `clean`.
 The `copy` task must be called as follows:
 
 ```
-copy(opts, src, dst)
-copy(opts, {src, dst})
-copy(opts, {src, dst}, {src, dst}, {src, dst}...)
-copy(opts, [{src, dst}, {src, dst}, {src, dst}...])
+copy(justoOpts, src, dst)
+copy(justoOpts, {src, dst})
+copy(justoOpts, {src, dst}, {src, dst}, {src, dst}...)
+copy(justoOpts, [{src, dst}, {src, dst}, {src, dst}...])
 ```
 
 When we use the parameters `src` and `dst`, the first one indicates the entry
@@ -199,4 +204,54 @@ copy("title...", [
   {src: "src/one.txt", dst: "dst1"},
   {src: "src/two.txt", dst: "dst2"}
 ]);
+```
+
+## chown task
+
+Change owner and group:
+
+```
+chown(justoOpts, opts : object)
+```
+
+The `opts` parameter:
+
+- `src` (string or string[]). The source dirs and files.
+- `user` (number). The new owner.
+- `group` (number). The new group.
+- `recurse` (boolean). Recurse? Default: `false`.
+
+Example:
+
+```
+chown("Set couchdb as owner", {
+  src: ["/usr/lib/couchdb", "/usr/share/couchdb", "/etc/couchdb", "/usr/bin/couchdb"],
+  user: 123,
+  group: 321,
+  recurse: true
+});
+```
+
+## chmod task
+
+Change mode:
+
+```
+chmod(justoOpts, opts : object)
+```
+
+The `opts` parameter:
+
+- `src` (string or string[]). The source dirs and files.
+- `mode` (number|string). The new mode.
+- `recurse` (boolean). Recurse? Default: `false`.
+
+Example:
+
+```
+chmod("Set permissions", {
+  src: ["/usr/lib/couchdb", "/usr/share/couchdb", "/etc/couchdb", "/usr/bin/couchdb"],
+  mode: "777",
+  recurse: true
+});
 ```

@@ -2,34 +2,27 @@
 const justo = require("justo");
 const suite = justo.suite;
 const test = justo.test;
+const pkg = require("../../dist/es5/nodejs/justo-plugin-fs");
 
 //suite
 suite("#fs", function() {
-  test("fs.clean", function() {
-    const clean = require("../../dist/es5/nodejs/justo-plugin-fs").clean;
-
-    clean.must.be.instanceOf(Function);
-    clean.toString().must.contain("runSimpleTask");
+  test("fs.chown", function() {
+    pkg.chown.must.be.instanceOf(Function);
   });
 
-  test("fs.remove", function() {
-    const remove = require("../../dist/es5/nodejs/justo-plugin-fs").remove;
-
-    remove.must.be.instanceOf(Function);
-    remove.toString().must.contain("runSimpleTask");
+  test("fs.clean", function() {
+    pkg.clean.must.be.instanceOf(Function);
   });
 
   test("fs.copy", function() {
-    const copy = require("../../dist/es5/nodejs/justo-plugin-fs").copy;
-
-    copy.must.be.instanceOf(Function);
-    copy.toString().must.contain("runSimpleTask");
+    pkg.copy.must.be.instanceOf(Function);
   });
 
   test("fs.create", function() {
-    const create = require("../../dist/es5/nodejs/justo-plugin-fs").create;
+    pkg.create.must.be.instanceOf(Function);
+  });
 
-    create.must.be.instanceOf(Function);
-    create.toString().must.contain("runSimpleTask");
+  test("fs.remove", function() {
+    pkg.remove.must.be.instanceOf(Function);
   });
 })();

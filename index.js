@@ -3,9 +3,14 @@ import {simple} from "justo";
 
 //internal data
 const NS = "org.justo.plugin.fs";
-var clean, copy, create;
+var chown, clean, copy, create;
 
 module.exports = {
+  get chown() {
+    if (!chown) chown = simple({ns: NS, name: "chown"}, require("./lib/chown").default);
+    return chown;
+  },
+
   get clean() {
     if (!clean) clean = simple({ns: NS, name: "clean"}, require("./lib/clean").default);
     return clean;
