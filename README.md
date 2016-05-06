@@ -95,7 +95,7 @@ The `clean` task removes files and directories. This must be called as follows:
 
 ```
 clean(justoOpts, opts : object)
-clean(justoOpts, src : string[])
+clean(justoOpts, src : string|string[])
 ```
 
 To delete files, use the `files` property as `string[]`. If some file doesn't exist,

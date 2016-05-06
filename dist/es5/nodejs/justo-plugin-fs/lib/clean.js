@@ -5,23 +5,21 @@
 
 
 clean;var _justoFs = require("justo-fs");var fs = _interopRequireWildcard(_justoFs);function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];}}newObj.default = obj;return newObj;}}function clean(params) {
-  var files, dirs, src;
+  var opts;
 
 
-  if (params[0]) {
-    if (params[0] instanceof Array) {
-      src = params[0];} else 
-    {
-      files = params[0].files;
-      dirs = params[0].dirs;
-      src = params[0].src;}}
+  if (params.length >= 1) {
+    if (params[0] instanceof Array) opts = { src: params[0] };else 
+    opts = Object.assign({}, params[0]);}
 
 
+  if (!opts) opts = {};
+  if (typeof opts.src == "string") opts.src = [opts.src];
 
 
-  if (files) cleanFiles(files);
-  if (dirs) cleanDirs(dirs);
-  if (src) cleanSrc(src);
+  if (opts.files) cleanFiles(opts.files);
+  if (opts.dirs) cleanDirs(opts.dirs);
+  if (opts.src) cleanSrc(opts.src);
 
 
   function cleanFiles(files) {var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {

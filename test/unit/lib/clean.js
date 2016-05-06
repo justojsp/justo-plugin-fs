@@ -17,12 +17,12 @@ suite("#clean()", function() {
   const SRC_DIR = new Dir(DATA_DIR);
   const DST_DIR = new Dir(Dir.TMP_DIR, Date.now());
 
-  init("*", function() {
+  init({name: "*", title: "Create tmp dir and copy test data files"}, function() {
     DST_DIR.create();
     SRC_DIR.copyTo(DST_DIR);
   });
 
-  fin("*", function() {
+  fin({name: "*", title: "Remove tmp dir"}, function() {
     DST_DIR.remove();
   });
 
@@ -62,7 +62,7 @@ suite("#clean()", function() {
     dir(DST_DIR.path, "dir3").must.not.exist();
   });
 
-  test("clean([{src}])", function() {
+  test("clean([{src : string[]}])", function() {
     clean([{
       src: [
         path.join(DST_DIR.path, "a.txt"),
@@ -79,6 +79,19 @@ suite("#clean()", function() {
     dir(DST_DIR.path, "dir1").must.not.exist();
     dir(DST_DIR.path, "dir2").must.exist();
     dir(DST_DIR.path, "dir3").must.not.exist();
+  });
+
+  test("clean([{src : string}])", function() {
+    clean([{
+      src: path.join(DST_DIR.path, "a.txt")
+    }]);
+
+    file(DST_DIR.path, "a.txt").must.not.exist();
+    file(DST_DIR.path, "b.txt").must.exist();
+    file(DST_DIR.path, "c.txt").must.exist();
+    dir(DST_DIR.path, "dir1").must.exist();
+    dir(DST_DIR.path, "dir2").must.exist();
+    dir(DST_DIR.path, "dir3").must.exist();
   });
 
   test("clean([array])", function() {
