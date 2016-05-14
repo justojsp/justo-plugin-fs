@@ -6,6 +6,10 @@ const pkg = require("../../dist/es5/nodejs/justo-plugin-fs");
 
 //suite
 suite("#fs", function() {
+  test("fs.chmod", function() {
+    pkg.chmod.must.be.instanceOf(Function);
+  });
+
   test("fs.chown", function() {
     pkg.chown.must.be.instanceOf(Function);
   });

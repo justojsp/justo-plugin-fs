@@ -3,9 +3,14 @@ var _justo = require("justo");
 
 
 var NS = "org.justo.plugin.fs";
-var chown, clean, copy, create;
+var chmod, chown, clean, copy, create;
 
 module.exports = { 
+  get chmod() {
+    if (!chmod) chmod = (0, _justo.simple)({ ns: NS, name: "chmod" }, require("./lib/chmod").default);
+    return chmod;}, 
+
+
   get chown() {
     if (!chown) chown = (0, _justo.simple)({ ns: NS, name: "chown" }, require("./lib/chown").default);
     return chown;}, 

@@ -3,9 +3,14 @@ import {simple} from "justo";
 
 //internal data
 const NS = "org.justo.plugin.fs";
-var chown, clean, copy, create;
+var chmod, chown, clean, copy, create;
 
 module.exports = {
+  get chmod() {
+    if (!chmod) chmod = simple({ns: NS, name: "chmod"}, require("./lib/chmod").default);
+    return chmod;
+  },
+
   get chown() {
     if (!chown) chown = simple({ns: NS, name: "chown"}, require("./lib/chown").default);
     return chown;
