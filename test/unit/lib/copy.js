@@ -22,11 +22,11 @@ suite("#copy()", function() {
   init("*", function() {
     DST_DIR = Dir.createTmpDir();
     DST = DST_DIR.path;
-  });
+  }).title("Create tmp dir where to copy");
 
   fin("*", function() {
     DST_DIR.remove();
-  });
+  }).title("Remove tmp dir");
 
   test("File to file", function() {
     var src = new File(SRC_DIR, "a.txt");
@@ -58,21 +58,39 @@ suite("#copy()", function() {
     file(dstFile3.path).text.must.be.eq(srcFile3.text);
   });
 
-  test("Dir to dir with ignore", function() {
-    var src = SRC_DIR;
-    var dst = DST_DIR;
-    var srcFile1 = new File(SRC_DIR, "a.txt");
-    var srcFile2 = new File(SRC_DIR, "b.txt");
-    var dstFile1 = new File(DST_DIR, "a.txt");
-    var dstFile2 = new File(DST_DIR, "b.txt");
+  suite("ignore", function() {
+    test("Top-level file to ignore", function() {
+      copy([{src: SRC, dst: DST, ignore: "a.txt"}], log);
 
-    copy([{src: src.path, dst: dst.path, ignore: path.join(SRC, "ignore")}], log);
+      file(DST, "a.txt").must.not.exist();
+      file(DST, "b.txt").must.exist();
+      file(DST, "ignore", "c.txt").must.exist();
+    });
 
-    file(dstFile1.path).must.exist();
-    file(dstFile1.path).text.must.be.eq(srcFile1.text);
-    file(dstFile2.path).must.exist();
-    file(dstFile2.path).text.must.be.eq(srcFile2.text);
-    file(DST, "ignore", "c.txt").must.not.exist();
+    test("Top-level dir to ignore", function() {
+      copy([{src: SRC, dst: DST, ignore: "ignore"}], log);
+
+      file(DST, "a.txt").must.exist();
+      file(DST, "b.txt").must.exist();
+      dir(DST, "ignore").must.not.exist();
+    });
+
+    test("Dir to dir with ignore", function() {
+      var src = SRC_DIR;
+      var dst = DST_DIR;
+      var srcFile1 = new File(SRC_DIR, "a.txt");
+      var srcFile2 = new File(SRC_DIR, "b.txt");
+      var dstFile1 = new File(DST_DIR, "a.txt");
+      var dstFile2 = new File(DST_DIR, "b.txt");
+
+      copy([{src: src.path, dst: dst.path, ignore: path.join(SRC, "ignore")}], log);
+
+      file(dstFile1.path).must.exist();
+      file(dstFile1.path).text.must.be.eq(srcFile1.text);
+      file(dstFile2.path).must.exist();
+      file(dstFile2.path).text.must.be.eq(srcFile2.text);
+      file(DST, "ignore", "c.txt").must.not.exist();
+    });
   });
 
   test("Entries to dir", function() {

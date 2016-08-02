@@ -31,6 +31,9 @@ copy;var _path = require("path");var _path2 = _interopRequireDefault(_path);var 
       var _dst = _param.dst || _param.dest;
       var ignore = _param.ignore;
 
+      if (!ignore) ignore = [];
+      if (typeof ignore == "string") ignore = [ignore];
+
       if (typeof _src == "string") {
         cp(_src, _dst, ignore);} else 
       {
@@ -41,5 +44,6 @@ copy;var _path = require("path");var _path2 = _interopRequireDefault(_path);var 
 
 
   function cp(src, dst, ignore) {
-    if (ignore) new fs.Dir(src).copyTo({ path: dst, ignore: ignore });else 
-    fs.copy(src, dst);}}
+    if (ignore.indexOf(src) < 0) {
+      if (ignore) new fs.Dir(src).copyTo({ path: dst, ignore: ignore });else 
+      fs.copy(src, dst);}}}
