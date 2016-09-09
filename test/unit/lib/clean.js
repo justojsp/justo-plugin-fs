@@ -1,6 +1,5 @@
 //imports
 const path = require("path");
-const File = require("justo-fs").File;
 const Dir = require("justo-fs").Dir;
 const justo = require("justo");
 const suite = justo.suite;
@@ -96,11 +95,11 @@ suite("#clean()", function() {
 
   test("clean([array])", function() {
     clean([[
-        path.join(DST_DIR.path, "a.txt"),
-        path.join(DST_DIR.path, "b.txt"),
-        path.join(DST_DIR.path, "dir1"),
-        path.join(DST_DIR.path, "dir2"),
-        path.join(DST_DIR.path, "unknown")
+      path.join(DST_DIR.path, "a.txt"),
+      path.join(DST_DIR.path, "b.txt"),
+      path.join(DST_DIR.path, "dir1"),
+      path.join(DST_DIR.path, "dir2"),
+      path.join(DST_DIR.path, "unknown")
     ]]);
 
     file(DST_DIR.path, "a.txt").must.not.exist();

@@ -1,4 +1,4 @@
-"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default =
 
 
 
@@ -13,4 +13,5 @@ op;var _justoFs = require("justo-fs");var fs = _interopRequireWildcard(_justoFs)
   if (typeof opts.src == "string") opts.src = [opts.src];var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {
 
 
-    for (var _iterator = opts.src[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var src = _step.value;fs.chmod(src, opts.mode, { recurse: !!opts.recurse });}} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator.return) {_iterator.return();}} finally {if (_didIteratorError) {throw _iteratorError;}}}}
+    for (var _iterator = opts.src[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var src = _step.value;fs.chmod(src, opts.mode, { recurse: !!opts.recurse });}} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator.return) {_iterator.return();}} finally {if (_didIteratorError) {throw _iteratorError;}}}
+}

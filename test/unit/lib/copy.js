@@ -58,7 +58,7 @@ suite("#copy()", function() {
     file(dstFile3.path).text.must.be.eq(srcFile3.text);
   });
 
-  suite("ignore", function() {
+  suite.only("ignore", function() {
     test("Top-level file to ignore", function() {
       copy([{src: SRC, dst: DST, ignore: "a.txt"}], log);
 
@@ -114,7 +114,6 @@ suite("#copy()", function() {
     var src2 = new File(SRC_DIR, "b.txt");
     var dst1 = new File(DST_DIR, "a.txt");
     var dst2 = new File(DST_DIR, "b.txt");
-    var dst = DST_DIR.path;
 
     copy([{src: src1.path, dst: dst1.path}, {src: src2.path, dst: dst2.path}], log);
 
@@ -122,5 +121,55 @@ suite("#copy()", function() {
     file(dst1.path).text.must.be.eq(src1.text);
     file(dst2.path).must.exist();
     file(dst2.path).text.must.be.eq(src2.text);
+  });
+
+  suite("force option", function() {
+    suite("force=false", function() {
+      test("All existent entries", function() {
+        copy([{
+          src: [path.join(SRC, "a.txt"), path.join(SRC, "b.txt")],
+          dst: DST,
+          force: false
+        }], log);
+
+        file(DST, "a.txt").must.exist();
+        file(DST, "b.txt").must.exist();
+      });
+
+      test("Some nonexistent entry", function() {
+        copy.must.raise(/doesn't exist/, [[{
+          src: [path.join(SRC, "a.txt"), path.join(SRC, "nonexistent.txt"), path.join(SRC, "b.txt")],
+          dst: DST,
+          force: false
+        }], log]);
+
+        file(DST, "a.txt").must.exist();
+        file(DST, "b.txt").must.not.exist();
+      });
+    });
+
+    suite("force=true", function() {
+      test("All existent entries", function() {
+        copy([{
+          src: [path.join(SRC, "a.txt"), path.join(SRC, "b.txt")],
+          dst: DST,
+          force: true
+        }], log);
+
+        file(DST, "a.txt").must.exist();
+        file(DST, "b.txt").must.exist();
+      });
+
+      test("Some nonexistent entry", function() {
+        copy([{
+          src: [path.join(SRC, "a.txt"), path.join(SRC, "nonexistent.txt"), path.join(SRC, "b.txt")],
+          dst: DST,
+          force: true
+        }], log);
+
+        file(DST, "a.txt").must.exist();
+        file(DST, "b.txt").must.exist();
+      });
+    });
   });
 })();

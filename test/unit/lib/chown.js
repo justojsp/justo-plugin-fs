@@ -12,7 +12,7 @@ const op = require("../../../dist/es5/nodejs/justo-plugin-fs/lib/chown").default
 //suite
 suite("#op()", function() {
   const DATA = "test/unit/data/chown";
-  var TMP_DIR, TMP, file;
+  var TMP_DIR, TMP;
 
   init({name: "*", title: "Create tmp dir"}, function() {
     TMP_DIR = Dir.createTmpDir();

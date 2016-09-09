@@ -150,10 +150,8 @@ The `remove` task is an alias of `clean`.
 The `copy` task must be called as follows:
 
 ```
-copy(justoOpts, src, dst)
-copy(justoOpts, {src, dst})
-copy(justoOpts, {src, dst}, {src, dst}, {src, dst}...)
-copy(justoOpts, [{src, dst}, {src, dst}, {src, dst}...])
+copy(justoOpts, {src, dst, opts})
+copy(justoOpts, [{src, dst, ignore, force}, {src, dst, ignore, force}, {src, dst, ignore, force}...])
 ```
 
 When we use the parameters `src` and `dst`, the first one indicates the entry
@@ -161,15 +159,14 @@ to copy to the second one. If `dst` ends with `/`, the source will be copied
 to the directory with the same name as the source has. Example:
 
 ```
-copy("title...", "entry", "dir/");      //copy entry to dir/entry
-copy("title...", "entry", "entry.old"); //copy entry to entry.old
+copy("title...", {src: "entry", dst: "dir/"});      //copy entry to dir/entry
+copy("title...", {src: "entry", dst: "entry.old"}); //copy entry to entry.old
 ```
 
-When we use an object, the properties can be:
+The copy options are:
 
-- `src` (String[]). The source entries to copy to destination.
-- `dst` (String) or `dest` (String). The destination.
 - `ignore` (string or string[]). To exclude entries.
+- `force` (boolean). Don't throw error when nonexistent entries. Default value: `false`.
 
 Example:
 
@@ -189,14 +186,6 @@ copy("title...", {
   src: ["dir1/one.txt", "dir2/two.txt"],
   dst: "dst"
 });
-
-//copy src/one.txt to dst1/one.txt
-//copy src/two.txt to dst2/two.txt
-copy(
-  "title...",
-  {src: "src/one.txt", dst: "dst1"},
-  {src: "src/two.txt", dst: "dst2"}
-);
 
 //copy src/one.txt to dst1/one.txt
 //copy src/two.txt to dst2/two.txt

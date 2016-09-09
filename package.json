@@ -1,12 +1,12 @@
 {
   "name": "justo-plugin-fs",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Simple tasks to run file system commands.",
-  "homepage": "http://www.justojs.org",
+  "homepage": "http://justojs.org",
   "author": {
-    "name": "JustoLabs",
+    "name": "Justo Labs",
     "email": "justojs@justolabs.com",
-    "url": "http://www.justojs.org"
+    "url": "http://justojs.org"
   },
   "contributors": [
     {
@@ -44,7 +44,7 @@
     "justo-dummy": "*",
     "justo-plugin-babel": "*",
     "justo-plugin-cli": "*",
-    "justo-plugin-jshint": "*",
+    "justo-plugin-eslint": "*",
     "justo-plugin-npm": "*"
   },
   "preferGlobal": false,
