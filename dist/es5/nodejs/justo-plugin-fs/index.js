@@ -33,4 +33,9 @@ module.exports = {
   get create() {
     if (!create) create = (0, _justo.simple)({ ns: NS, name: "create" }, require("./lib/create").default);
     return create;
+  },
+
+  get exists() {
+    if (!this._exists) Object.defineProperty(this, "_exists", { value: (0, _justo.simple)({ ns: NS, name: "exists" }, require("./lib/exists").default) });
+    return this._exists;
   } };

@@ -29,4 +29,8 @@ suite("#fs", function() {
   test("fs.remove", function() {
     pkg.remove.must.be.instanceOf(Function);
   });
+  
+  test("exists", function() {
+    pkg["exists"].must.be.instanceOf(Function);
+  });
 })();

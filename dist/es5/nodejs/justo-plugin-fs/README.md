@@ -195,6 +195,26 @@ copy("title...", [
 ]);
 ```
 
+## exists task
+
+Check whether an entry exists:
+
+```
+exists(justoOpts, opts : object) : true
+```
+
+The `opts` parameter:
+
+- `src` (string). The entry to check.
+
+Example:
+
+```
+if (!fs.exists("Check whether /etc/apt/sources.list.d/rethinkdb.list exists", {src: "/etc/apt/sources.list.d/rethinkdb.list"})) {
+  ...
+}
+```
+
 ## chown task
 
 Change owner and group:
